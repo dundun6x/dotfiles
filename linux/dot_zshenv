@@ -1,0 +1,7 @@
+typeset -U path
+path=("$HOME/.local/shim" "$HOME/.local/bin" "$HOME/.cargo/bin" $path)
+export PATH
+export HOST_IP=$(ip route | awk '/default/ {print $3; exit}')  # For WSL
+export EDITOR="wrap-code"
+export VISUAL="wrap-code"
+export GRAVEYARD="$HOME/.local/share/trash"

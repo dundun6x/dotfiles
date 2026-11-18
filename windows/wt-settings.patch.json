@@ -1,0 +1,6 @@
+{
+  "actions": [
+    { "command": { "action": "sendInput", "input": "\u001b[H" }, "keys": "ctrl+q" },
+    { "command": { "action": "sendInput", "input": "\u001b[F" }, "keys": "ctrl+e" }
+  ]
+}

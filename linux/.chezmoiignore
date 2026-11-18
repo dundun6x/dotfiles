@@ -1,0 +1,8 @@
+{{ if ne .chezmoi.username .owner }}
+.bashrc.d/owner.sh
+.local/shim/proxy-code
+{{ end }}
+
+{{ if ne .chezmoi.username .agent }}
+.pi
+{{ end }}

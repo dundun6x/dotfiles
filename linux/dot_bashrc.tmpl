@@ -1,0 +1,45 @@
+#
+# ~/.bashrc
+#
+
+export HOST_IP=$(ip route | awk '/default/ {print $3; exit}')  # For WSL
+
+export PATH="$HOME/.local/shim:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export EDITOR="wrap-code"
+export VISUAL="wrap-code"
+
+export GRAVEYARD="$HOME/.local/share/trash"
+
+# If not running interactively, do nothing
+[[ $- != *i* ]] && return 0
+
+PS1='[\u@\h \W]\$ '
+
+source "$HOME/.bashrc.d/core.sh"
+alias r=reload-user
+alias rr=reload-all
+alias c=clear
+
+source "$HOME/.bashrc.d/workspace.sh"
+alias j=ws-jump
+alias s=ws-source
+alias l=ws-load
+# Short options are '-alhmU'
+alias ll='eza --all --long --header --modified --created \
+  --time-style="+%Y-%m-%d %H:%M"'
+
+source "$HOME/.bashrc.d/file.sh"
+alias share=share-add
+alias sharerm=share-remove
+alias sharels=share-list
+alias own='sudo chown -R $USER'
+
+source "$HOME/.bashrc.d/proxy.sh"
+source "$HOME/.bashrc.d/git.sh"
+
+{{- if eq .chezmoi.username .owner }}
+
+source "$HOME/.bashrc.d/owner.sh"
+alias pi=owner-pi
+
+{{- end }}

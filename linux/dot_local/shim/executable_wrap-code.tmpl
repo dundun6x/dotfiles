@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+{{- if eq .chezmoi.username .agent }}
+
+file="$1"
+dir=$(dirname "$file")
+if [[ "$dir" == /tmp/* ]]; then
+  setfacl -m u:owner:--x "$dir" 2>/dev/null
+  setfacl -m u:owner:rw "$file" 2>/dev/null
+fi
+sudo -u owner "$PROXY_VSCODE" $@
+
+{{- else }}
+
+[[ $# -eq 1 ]] || exit 1
+exec code --wait -- "$1"
+
+{{- end }}

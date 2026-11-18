@@ -1,0 +1,11 @@
+[credential]
+	helper = store
+[core]
+	editor = code --wait
+[user]
+	email = dundun6x@gmail.com
+	name = dundun
+[init]
+	defaultBranch = main
+[includeIf "gitdir:~/ic-edu/"]
+	path = ~/ic-edu/.gitconfig

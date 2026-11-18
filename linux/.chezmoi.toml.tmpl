@@ -1,0 +1,10 @@
+{{- $owner := promptStringOnce . "owner" "The username of the owner" -}}
+{{- $agent := promptStringOnce . "agent" "The username of the agent" -}}
+{{- $path := promptStringOnce . "path" "The path of the dotfiles" -}}
+
+mode = "symlink"
+sourceDir = {{ $path | quote }}
+
+[data]
+  owner = {{ $owner | quote }}
+  agent = {{ $agent | quote }}
