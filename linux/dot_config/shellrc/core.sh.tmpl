@@ -1,15 +1,12 @@
-#
-# ~/.bashrc.d/core.sh
-#
-
 # NOTE: This does not unset exported variables (reopen terminal instead)
 reload-user() {
   cd "$HOME"
-  exec bash -li
+  exec "$SHELL" -il
 }
 
 reload-all() {
-  chezmoi apply
-  sudo -u {{ .agent }} -H bash -c 'chezmoi apply'
+  sudo -iu root -- chezmoi apply
+  sudo -iu {{ .owner }} -- chezmoi apply
+  sudo -iu {{ .agent }} -- chezmoi apply
   reload-user
 }

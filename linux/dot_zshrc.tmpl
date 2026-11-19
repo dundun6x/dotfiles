@@ -8,12 +8,15 @@ PROMPT='[%n@%m %1~]%# '
 
 setopt SHARE_HISTORY
 
-source "$HOME/.zshrc.d/core.sh"
+shellrc_dir="$HOME/.config/shellrc"
+zsh_plugin_dir="$HOME/.local/share/zsh/plugins"
+
+source "$shellrc_dir/core.sh"
 alias r=reload-user
 alias rr=reload-all
 alias c=clear
 
-source "$HOME/.zshrc.d/workspace.sh"
+source "$shellrc_dir/workspace.sh"
 alias j=ws-jump
 alias s=ws-source
 alias l=ws-load
@@ -21,23 +24,24 @@ alias l=ws-load
 alias ll='eza --all --long --header --modified --created \
   --time-style="+%Y-%m-%d %H:%M"'
 
-source "$HOME/.zshrc.d/file.sh"
+source "$shellrc_dir/file.sh"
 alias share=share-add
 alias sharerm=share-remove
 alias sharels=share-list
 alias own='sudo chown -R $USER'
 
-source "$HOME/.zshrc.d/proxy.sh"
-source "$HOME/.zshrc.d/git.sh"
+source "$shellrc_dir/proxy.sh"
+source "$shellrc_dir/git.sh"
 
 {{- if eq .chezmoi.username .owner }}
 
-source "$HOME/.zshrc.d/owner.sh"
+source "$shellrc_dir/owner.sh"
 alias pi=owner-pi
 
 {{- end }}
 
-zsh_plugin_dir="$HOME/.local/share/zsh/plugins"
 source "$zsh_plugin_dir/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$zsh_plugin_dir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+unset shellrc_dir
 unset zsh_plugin_dir

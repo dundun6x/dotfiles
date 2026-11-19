@@ -1,7 +1,3 @@
-#
-# ~/.bashrc.d/file.sh
-#
-
 share-add() {
   (( $# < 2 )) && return 1
   local grantee="$1"
@@ -23,7 +19,9 @@ share-remove() {
 share-list() {
   (( $# < 1 )) && return 1
   local grantee="$1"
-  find ~/* -type d -exec sh -c '
-    getfacl -p "$2" | grep -q "^user:$1:"
-  ' bash "$grantee" {} \; -print -prune
+  find "$HOME" -mindepth 1 -type d \
+    -exec sh -c '
+      getfacl -p "$2" 2>/dev/null | grep -q "^user:$1:"
+    ' sh "$grantee" {} \; \
+    -print -prune
 }

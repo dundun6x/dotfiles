@@ -1,7 +1,3 @@
-#
-# ~/.zshrc.d/git.sh
-#
-
 user-git-log() {
   local height="${1-10}"
   git log -n "$height" --color --format="%C(auto)%h %s %d"
@@ -21,8 +17,10 @@ user-git-rebase() {
 user-git-branch-remote-rename() {
   local old="$1"
   local new="$2"
+  local cmd
+  [ -n "$ZSH_VERSION" ] && cmd="$0" || cmd="${FUNCNAME[0]}"
   if [[ -z "$old" || -z "$new" ]]; then
-    echo "usage: $0 <old-name> <new-name>"
+    echo "usage: $cmd <old-name> <new-name>"
     return 1
   fi
   git push origin "origin/$old:refs/heads/$new" && \

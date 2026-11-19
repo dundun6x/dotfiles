@@ -1,7 +1,3 @@
-#
-# ~/.zshrc.d/workspace.sh
-#
-
 ws-jump() {
   local dir
   dir="$(fzf --walker="dir,hidden" --walker-root="$HOME" --query="$*")"

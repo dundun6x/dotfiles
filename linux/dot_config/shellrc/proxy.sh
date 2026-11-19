@@ -1,7 +1,3 @@
-#
-# ~/.bashrc.d/proxy.sh
-#
-
 proxy-set() {
   export http_proxy="http://$HOST_IP:7897"
   export https_proxy="http://$HOST_IP:7897"
