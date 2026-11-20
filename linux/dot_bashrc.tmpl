@@ -2,7 +2,9 @@
 # ~/.bashrc
 #
 
-export HOST_IP=$(ip route | awk '/default/ {print $3; exit}')  # For WSL
+export HOST_IP=$(ip route | awk '/default/ {print $3; exit}')
+export PROXY_VSCODE="/home/{{ .owner }}/.local/shim/proxy-code"
+
 export PATH="$HOME/.local/shim:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 export EDITOR="wrap-code"
 export VISUAL="wrap-code"
@@ -16,8 +18,8 @@ PS1='[\u@\h \W]\$ '
 shellrc_dir="$HOME/.config/shellrc"
 
 source "$shellrc_dir/core.sh"
-alias r=reload-user
-alias rr=reload-all
+alias r=core-reload
+alias be=core-be
 alias c=clear
 
 source "$shellrc_dir/workspace.sh"
@@ -40,6 +42,7 @@ source "$shellrc_dir/git.sh"
 {{- if eq .chezmoi.username .owner }}
 
 source "$shellrc_dir/owner.sh"
+init-proxy-vscode
 alias pi=owner-pi
 
 {{- end }}

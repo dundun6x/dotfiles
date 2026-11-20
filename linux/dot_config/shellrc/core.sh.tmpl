@@ -1,12 +1,16 @@
-# NOTE: This does not unset exported variables (reopen terminal instead)
-reload-user() {
-  cd "$HOME"
-  exec "$SHELL" -il
+core-be() {
+  sudo -iu "${1-root}"
 }
 
-reload-all() {
-  sudo -u root -- chezmoi apply
-  sudo -u {{ .owner }} -- chezmoi apply
-  sudo -u {{ .agent }} -- chezmoi apply
-  reload-user
+core-all() {
+  sudo -iu root -- "$@"
+  sudo -iu {{ .owner }} -- "$@"
+  sudo -iu {{ .agent }} -- "$@"
+}
+
+core-reload() {
+  chezmoi verify || core-all chezmoi apply
+  cd "$HOME"
+  exec "$SHELL" -il
+  # NOTE: This does not unset exported variables (reopen terminal instead)
 }

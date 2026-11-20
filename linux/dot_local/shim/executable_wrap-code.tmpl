@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-{{- if eq .chezmoi.username .agent }}
+{{- if ne .chezmoi.username .owner }}
 
 file="$1"
 dir=$(dirname "$file")

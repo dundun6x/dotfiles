@@ -17,8 +17,8 @@ shellrc_dir="$HOME/.config/shellrc"
 zsh_plugin_dir="$HOME/.local/share/zsh/plugins"
 
 source "$shellrc_dir/core.sh"
-alias r=reload-user
-alias rr=reload-all
+alias r=core-reload
+alias be=core-be
 alias c=clear
 
 source "$shellrc_dir/workspace.sh"
@@ -41,6 +41,7 @@ source "$shellrc_dir/git.sh"
 {{- if eq .chezmoi.username .owner }}
 
 source "$shellrc_dir/owner.sh"
+init-proxy-vscode
 alias pi=owner-pi
 
 {{- end }}
