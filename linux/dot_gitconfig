@@ -7,5 +7,7 @@
 	name = dundun
 [init]
 	defaultBranch = main
+[push]
+	autoSetupRemote = true
 [includeIf "gitdir:~/ic-edu/"]
 	path = ~/ic-edu/.gitconfig
