@@ -5,8 +5,8 @@ reload-user() {
 }
 
 reload-all() {
-  sudo -iu root -- chezmoi apply
-  sudo -iu {{ .owner }} -- chezmoi apply
-  sudo -iu {{ .agent }} -- chezmoi apply
+  sudo -u root -- chezmoi apply
+  sudo -u {{ .owner }} -- chezmoi apply
+  sudo -u {{ .agent }} -- chezmoi apply
   reload-user
 }
