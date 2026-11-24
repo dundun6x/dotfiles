@@ -2,8 +2,8 @@ share-add() {
   (( $# < 2 )) && return 1
   local grantee="$1"
   local dir="$2"
-  setfacl -R -m "u:$grantee:rwX,d:u:$grantee:rwX" "$dir"
-  setfacl -R -m "d:u:$USER:rwX" "$dir"
+  setfacl -R -m "u:${grantee}:rwX,d:u:${grantee}:rwX" "$dir"
+  setfacl -R -m "d:u:${USER}:rwX" "$dir"
   # Note that 'grantee' owns any files it creates inside shared 'dir'
   # To unify file ownership afterwards, use 'sudo chown -R $USER <dir>'
 }
@@ -25,3 +25,16 @@ share-list() {
     ' sh "$grantee" {} \; \
     -print -prune
 }
+
+_share() {
+  case $CURRENT in
+    2) _users ;;
+    3) _directories ;;
+  esac
+}
+
+if [[ -n "$ZSH_VERSION" ]]; then
+  compdef _share share-add
+  compdef _share share-remove
+  compdef _share share-list
+fi

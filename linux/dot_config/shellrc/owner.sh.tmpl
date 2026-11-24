@@ -14,12 +14,6 @@ agent-pi() {
   ' "$shell" "$@"
 }
 
-agent-clean() {
-  sudo -Hu {{ .agent }} sh -c '
-    rm -rf "$HOME/.deltabox"
-  '
-}
-
 init-proxy-vscode() {
   local this
   [ -n "$ZSH_VERSION" ] && this="${(%):-%x}" || this="${BASH_SOURCE[0]}"

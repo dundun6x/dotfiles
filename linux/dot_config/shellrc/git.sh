@@ -33,7 +33,7 @@ alias gh='cd "$(git rev-parse --show-toplevel)"'
 
 alias ga='git add -A'
 alias gad='git add'
-alias grm='git rm'
+alias grm='git rm --cached'
 alias gmv='git mv'
 alias gr='git restore'
 alias grs='git restore --staged'
@@ -55,3 +55,7 @@ alias gf='git fetch'
 alias gpl='git pull'
 alias gps='git push'
 alias gpf='git push --force-with-lease'
+
+if [[ -n "$ZSH_VERSION" ]]; then
+  compdef -e 'words=(git log "${words[@]:1}"); (( CURRENT++ )); _git' git-log-n
+fi

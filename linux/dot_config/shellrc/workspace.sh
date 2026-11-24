@@ -12,3 +12,8 @@ ws-load() {
   ws-jump "$1" || return 0
   ws-source && echo "Loaded 'env.sh'"
 }
+
+if [[ -n "$ZSH_VERSION" ]]; then
+  compdef _directories ws-jump
+  compdef _directories ws-load
+fi

@@ -14,3 +14,7 @@ core-reload() {
   exec "$SHELL" -il
   # NOTE: This does not unset exported variables (reopen terminal instead)
 }
+
+if [[ -n "$ZSH_VERSION" ]]; then
+  compdef _precommand core-all
+fi
