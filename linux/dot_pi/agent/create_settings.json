@@ -1,0 +1,16 @@
+{
+  "defaultProvider": "antigravity",
+  "defaultModel": "gemini-4-hydrogen",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:@ferris1225/pi-subagents",
+    "npm:@smallbatchcode/pi-slash-command-guard",
+    "npm:pi-antigravity",
+    "npm:pi-btw",
+    "npm:pi-clear-screen",
+    "npm:pi-context-diet",
+    "npm:pi-open-tui",
+    "npm:pi-usage",
+    "npm:pi-web-access"
+  ]
+}
